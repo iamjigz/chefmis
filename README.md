@@ -1,4 +1,13 @@
-# Chefmis
+# CHEF-MIS
+
+Computerized Hospital Efficient Food Management Information System
+
+[![Site Status](https://img.shields.io/website-up-down-green-red/http/chefmis.netlify.com.svg?label=Netlify&style=for-the-badge&logo=netlify)](https://chefmis.netlify.com)
+[![Vulnerabilities](https://img.shields.io/snyk/vulnerabilities/github/iamjigz/chefmis/package.json.svg?style=for-the-badge&logo=github)](https://github.com/iamjigz/chefmis/issues)
+
+[![Top Language](https://img.shields.io/github/languages/top/iamjigz/chefmis.svg?style=for-the-badge&logo=github)](https://github.com/iamjigz/chefmis/pulse)
+[![Commit Activity](https://img.shields.io/github/commit-activity/y/iamjigz/chefmis.svg?style=for-the-badge&logo=github)](https://github.com/iamjigz/chefmis/graphs/commit-activity)
+[![Last Commit](https://img.shields.io/github/last-commit/iamjigz/chefmis.svg?style=for-the-badge&logo=github)](https://github.com/iamjigz/chefmis/graphs/code-frequency)
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 8.3.20.
 
@@ -25,3 +34,12 @@ Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protrac
 ## Further help
 
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+
+[![forthebadge](https://forthebadge.com/images/badges/uses-badges.svg)](https://forthebadge.com)
+
+[![forthebadge](https://forthebadge.com/images/badges/built-with-love.svg)](https://forthebadge.com)
+[![forthebadge](https://forthebadge.com/images/badges/built-with-swag.svg)](https://forthebadge.com)
+
+[![forthebadge](https://forthebadge.com/images/badges/powered-by-netflix.svg)](https://forthebadge.com)
+
+[![forthebadge](https://forthebadge.com/images/badges/60-percent-of-the-time-works-every-time.svg)](https://forthebadge.com)
