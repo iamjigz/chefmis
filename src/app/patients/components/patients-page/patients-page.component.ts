@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
+import { PatientsService } from '../../services/patients.service';
+
 @Component({
   selector: 'app-patients-page',
   templateUrl: './patients-page.component.html',
@@ -7,7 +9,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PatientsPageComponent implements OnInit {
 
-  constructor() { }
+  constructor(public patients: PatientsService) { }
 
   ngOnInit() {
   }
