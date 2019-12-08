@@ -34,10 +34,6 @@ export class PatientFormComponent {
 
   constructor(private fb: FormBuilder, public patient: PatientsService) { }
 
-  onSubmit() {
-    alert('Thanks!');
-  }
-
   async submit(formGroup: FormGroup, formDirective: FormGroupDirective) {
     this.patientForm.disable();
     await this.patient.create({ ...this.patientForm.value });
@@ -45,7 +41,7 @@ export class PatientFormComponent {
     this.patientForm.enable();
   }
 
-  private resetForm(formGroup: FormGroup, formDirective: FormGroupDirective): void {
+  resetForm(formGroup: FormGroup, formDirective: FormGroupDirective): void {
     formDirective.resetForm();
     formGroup.reset();
   }
