@@ -4,10 +4,20 @@
 <div *ngIf="noResults$ | async">
   No results
 </div>
-<div class="card bg-light mb-3" style="max-width: 18rem;" *ngFor="let patient of patients$ | async">
-  <div class="card-header">{{patient.id}}</div>
-  <div class="card-body">
-    <h5 class="card-title">{{patient.name}}</h5>
-    <button (click)="delete(patient)" class="btn btn-danger">Delete</button>
-  </div>
-</div>
+<mat-card class="patient-card">
+  <mat-card-header>
+    <mat-card-title>Patient Information</mat-card-title>
+  </mat-card-header>
+  <mat-card-content>
+    <mat-list>
+      <h3 matSubheader>Patient List</h3>
+      <mat-list-item *ngFor="let patient of patients$ | async">
+        <mat-icon matListIcon color="accent">face</mat-icon>
+        <h4 matLine>{{ patient.id }}</h4>
+        <p matLine class="demo-2">{{ patient.lastName }}, {{ patient.firstName }}</p>
+        <button mat-raised-button color="accent" (click)="update(patient)">Update</button>
+        <button mat-raised-button color="warn" (click)="delete(patient)">Delete</button>
+      </mat-list-item>
+    </mat-list>
+  </mat-card-content>
+</mat-card>

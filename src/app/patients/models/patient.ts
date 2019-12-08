@@ -1,5 +1,11 @@
 export interface Patient {
   id: string;
-  name: string;
-  date_admitted: Date;
+  firstName: string;
+  lastName: string;
+  dateAdmitted: Date;
+  department: string;
+  bedNo: number;
+  dietType: string;
+  status: string;
+  remarks: string;
 }

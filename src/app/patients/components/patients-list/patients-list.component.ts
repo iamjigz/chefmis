@@ -23,6 +23,9 @@ export class PatientsListComponent implements OnInit {
     this.patients$ = this.patients.patients$;
   }
 
+  update(patient: Patient) {
+  }
+
   delete(patient: Patient) {
     this.patients.delete(patient.id);
   }
