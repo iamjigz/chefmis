@@ -1,6 +1,7 @@
-import { Patient } from '../../models/patient';
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
+
+import { Patient } from '../../models/patient';
 import { PatientsService } from '../../services/patients.service';
 
 @Component({

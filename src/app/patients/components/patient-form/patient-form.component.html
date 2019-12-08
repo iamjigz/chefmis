@@ -1,4 +1,4 @@
-<form [formGroup]="patientForm" novalidate (ngSubmit)="onSubmit()">
+<form [formGroup]="patientForm" #directive="ngForm" (ngSubmit)="submit(patientForm, directive)">
   <mat-card class="patient-card">
     <mat-card-header>
       <mat-card-title>Patient Information</mat-card-title>
@@ -98,7 +98,12 @@
 
     </mat-card-content>
     <mat-card-actions>
-      <button mat-raised-button color="primary" type="submit">Submit</button>
+      <button mat-raised-button color="primary" type="submit" [disabled]="!patientForm.valid">
+        Add
+      </button>
+      <button mat-raised-button color="accent" type="reset" (click)="resetForm(patientForm, directive)">
+        Cancel
+      </button>
     </mat-card-actions>
   </mat-card>
 </form>

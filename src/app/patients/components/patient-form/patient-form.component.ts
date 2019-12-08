@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
-import { FormBuilder, Validators } from '@angular/forms';
+import { FormBuilder, Validators, FormGroup, FormGroupDirective } from '@angular/forms';
+
 import { Patient } from './../../models/patient';
+import { PatientsService } from '../../services/patients.service';
 
 @Component({
   selector: 'app-patient-form',
@@ -30,9 +32,21 @@ export class PatientFormComponent {
     'Emergency'
   ];
 
-  constructor(private fb: FormBuilder) { }
+  constructor(private fb: FormBuilder, public patient: PatientsService) { }
 
   onSubmit() {
     alert('Thanks!');
+  }
+
+  async submit(formGroup: FormGroup, formDirective: FormGroupDirective) {
+    this.patientForm.disable();
+    await this.patient.create({ ...this.patientForm.value });
+    this.resetForm(formGroup, formDirective);
+    this.patientForm.enable();
+  }
+
+  private resetForm(formGroup: FormGroup, formDirective: FormGroupDirective): void {
+    formDirective.resetForm();
+    formGroup.reset();
   }
 }
