@@ -10,6 +10,8 @@ import { DashboardComponent } from './core/components/dashboard/dashboard.compon
 import { MaterialModule } from './core/material.module';
 import { CoreModule } from './core/core.module';
 import { PatientsModule } from './patients/patients.module';
+import { ServiceWorkerModule } from '@angular/service-worker';
+import { environment } from '../environments/environment';
 
 @NgModule({
   declarations: [
@@ -24,6 +26,7 @@ import { PatientsModule } from './patients/patients.module';
     CoreModule,
     MaterialModule,
     PatientsModule,
+    ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production }),
   ],
   providers: [],
   bootstrap: [AppComponent]
