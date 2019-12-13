@@ -13,9 +13,12 @@
       <h3 matSubheader>{{ (patients$ | async).length }} patients currently admitted.</h3>
       <mat-list-item *ngFor="let patient of patients$ | async">
         <mat-icon matListIcon color="accent">face</mat-icon>
-        <h4 matLine>{{ patient.id }}</h4>
-        <p matLine class="demo-2">{{ patient.lastName }}, {{ patient.firstName }}</p>
-        <p matLine class="demo-2">{{ patient.dateAdmitted['seconds'] * 1000 | date: 'medium' }}</p>
+        <h4 matLine>
+          <strong>{{ patient.id }}</strong> ||
+          <small>{{ patient.department }} - {{ patient.bedNo }}</small>
+        </h4>
+        <p matLine class="mat-subheading-1">{{ patient.lastName }}, {{ patient.firstName }}</p>
+        <small matLine>{{ patient.dateAdmitted['seconds'] * 1000 | date: 'medium' }}</small>
 
         <mat-action-list>
           <button mat-button color="accent" (click)="update(patient)">
@@ -25,6 +28,7 @@
             Delete
           </button>
         </mat-action-list>
+        <mat-divider></mat-divider>
       </mat-list-item>
     </mat-list>
   </mat-card-content>

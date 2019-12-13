@@ -17,3 +17,20 @@
      Every toolbar row uses a flexbox row layout. */
   flex: 1 1 auto;
 }
+
+.mat-sidenav {
+  background:linear-gradient(135deg, #DFEC51 0%,#73AA0A 100%);
+}
+
+main {
+ background:linear-gradient(135deg, #E3E3E3 0%,#5D6874 100%);
+}
+
+.mat-toolbar.mat-primary {
+  background:linear-gradient(135deg, #13f1fc 0%,#0470dc 100%);
+}
+
+.mat-toolbar.mat-accent {
+  background:linear-gradient(135deg, #17ead9 0%,#6078ea 100%);
+}
+
