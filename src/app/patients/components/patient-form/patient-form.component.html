@@ -3,70 +3,57 @@
     <mat-card-header>
       <mat-card-title>Patient Information</mat-card-title>
     </mat-card-header>
-    <mat-card-content>
-      <div class="row">
-        <div class="col">
-          <mat-form-field class="full-width">
-            <input matInput placeholder="Patient ID" formControlName="id">
-            <mat-error *ngIf="patientForm.controls['id'].hasError('required')">
-              Patient ID is <strong>required</strong>
-            </mat-error>
-          </mat-form-field>
-        </div>
-        <div class="col">
-          <mat-form-field class="full-width">
-            <input matInput formControlName="dateAdmitted" [matDatepicker]="dateAdmitted"
-              placeholder="Date of admission">
-            <mat-datepicker-toggle matSuffix [for]="dateAdmitted"></mat-datepicker-toggle>
-            <mat-datepicker #dateAdmitted></mat-datepicker>
-          </mat-form-field>
-        </div>
+    <mat-card-content fxLayout="column" fxLayoutGap="20px">
+      <div fxLayout="row" fxLayoutGap="20px">
+        <mat-form-field fxFlex>
+          <input matInput placeholder="Patient ID" formControlName="id">
+          <mat-error *ngIf="patientForm.controls['id'].hasError('required')">
+            Patient ID is <strong>required</strong>
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field fxFlex>
+          <input matInput formControlName="dateAdmitted" [matDatepicker]="dateAdmitted" placeholder="Date of admission">
+          <mat-datepicker-toggle matSuffix [for]="dateAdmitted"></mat-datepicker-toggle>
+          <mat-datepicker #dateAdmitted></mat-datepicker>
+        </mat-form-field>
       </div>
 
-      <div class="row">
-        <div class="col">
-          <mat-form-field class="full-width">
-            <input matInput placeholder="First name" formControlName="firstName">
-            <mat-error *ngIf="patientForm.controls['firstName'].hasError('required')">
-              First name is <strong>required</strong>
-            </mat-error>
-          </mat-form-field>
-        </div>
-        <div class="col">
-          <mat-form-field class="full-width">
-            <input matInput placeholder="Last name" formControlName="lastName">
-            <mat-error *ngIf="patientForm.controls['lastName'].hasError('required')">
-              Last name is <strong>required</strong>
-            </mat-error>
-          </mat-form-field>
-        </div>
+      <div fxLayout="row" fxLayoutGap="20px">
+        <mat-form-field fxFlex>
+          <input matInput placeholder="First name" formControlName="firstName">
+          <mat-error *ngIf="patientForm.controls['firstName'].hasError('required')">
+            First name is <strong>required</strong>
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field fxFlex>
+          <input matInput placeholder="Last name" formControlName="lastName">
+          <mat-error *ngIf="patientForm.controls['lastName'].hasError('required')">
+            Last name is <strong>required</strong>
+          </mat-error>
+        </mat-form-field>
       </div>
 
-      <div class="row">
-        <div class="col">
-          <mat-form-field class="full-width">
-            <mat-select placeholder="Department" formControlName="department">
-              <mat-option *ngFor="let dept of deptList.sort()" [value]="dept">
-                {{ dept }}
-              </mat-option>
-            </mat-select>
-            <mat-error *ngIf="patientForm.controls['department'].hasError('required')">
-              Department is <strong>required</strong>
-            </mat-error>
-          </mat-form-field>
-        </div>
-        <div class="col">
-          <mat-form-field class="full-width">
-            <input matInput type="number" placeholder="Bed Number" formControlName="bedNo">
-            <mat-error *ngIf="patientForm.controls['bedNo'].hasError('required')">
-              Bed Number is <strong>required</strong>
-            </mat-error>
-          </mat-form-field>
-        </div>
+      <div fxLayout="row" fxLayoutGap="20px">
+        <mat-form-field fxFlex>
+          <mat-select placeholder="Department" formControlName="department">
+            <mat-option *ngFor="let dept of deptList.sort()" [value]="dept">
+              {{ dept }}
+            </mat-option>
+          </mat-select>
+          <mat-error *ngIf="patientForm.controls['department'].hasError('required')">
+            Department is <strong>required</strong>
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field fxFlex>
+          <input matInput type="number" placeholder="Bed Number" formControlName="bedNo">
+          <mat-error *ngIf="patientForm.controls['bedNo'].hasError('required')">
+            Bed Number is <strong>required</strong>
+          </mat-error>
+        </mat-form-field>
       </div>
 
-      <div class="row">
-        <div class="col">
+      <div fxLayout="row" fxLayoutAlign="start space-around" fxLayoutGap="50px">
+        <div>
           <label id="status-label">Status:</label>
           <mat-radio-group formControlName="status" aria-labelledby="status-label">
             <mat-radio-button value="admitted">Admitted</mat-radio-button>
@@ -74,7 +61,7 @@
             <mat-radio-button value="discharged">Discharged</mat-radio-button>
           </mat-radio-group>
         </div>
-        <div class="col">
+        <div>
           <label id="diet-type-label">Type of Diet:</label>
           <mat-radio-group formControlName="dietType" aria-labelledby="diet-type-label">
             <mat-radio-button value="routine">Routine Diet</mat-radio-button>
@@ -84,16 +71,14 @@
         </div>
       </div>
 
-      <div class="row">
-        <div class="col">
-          <mat-form-field class="full-width">
-            <textarea matInput matTextareaAutosize matAutosizeMinRows=3 matAutosizeMaxRows=5 placeholder="Remarks"
-              formControlName="remarks"></textarea>
-            <mat-error *ngIf="patientForm.controls['remarks'].hasError('required')">
-              Remarks is <strong>required</strong>
-            </mat-error>
-          </mat-form-field>
-        </div>
+      <div fxLayout="row" fxLayoutGap="20px">
+        <mat-form-field class="full-width">
+          <textarea matInput matTextareaAutosize matAutosizeMinRows=3 matAutosizeMaxRows=5 placeholder="Remarks"
+            formControlName="remarks"></textarea>
+          <mat-error *ngIf="patientForm.controls['remarks'].hasError('required')">
+            Remarks is <strong>required</strong>
+          </mat-error>
+        </mat-form-field>
       </div>
 
     </mat-card-content>
