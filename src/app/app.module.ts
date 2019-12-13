@@ -8,6 +8,8 @@ import { NavigationComponent } from './core/components/navigation/navigation.com
 import { DashboardComponent } from './core/components/dashboard/dashboard.component';
 
 import { MaterialModule } from './core/material.module';
+import { FlexLayoutModule } from '@angular/flex-layout';
+
 import { CoreModule } from './core/core.module';
 import { PatientsModule } from './patients/patients.module';
 import { ServiceWorkerModule } from '@angular/service-worker';
@@ -23,6 +25,7 @@ import { environment } from '../environments/environment';
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
+    FlexLayoutModule,
     CoreModule,
     MaterialModule,
     PatientsModule,
