@@ -1,0 +1,60 @@
+html {
+  width: 100%;
+  height: 100%;
+}
+
+body {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  font-size: 16px;
+  font-weight: 400;
+  -webkit-font-smoothing: antialiased;
+}
+
+.content {
+  margin: 20px;
+}
+
+form {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  display: block;
+  width: 100%;
+  max-width: 400px;
+  margin: 20px;
+  padding: 2.25em;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  border-radius: 0.5em;
+}
+
+form .svgContainer {
+  position: relative;
+  width: 200px;
+  height: 200px;
+  margin: 0 auto 1em;
+  border-radius: 50%;
+  background: none;
+  border: solid 2.5px #3a5e77;
+  overflow: hidden;
+  pointer-events: none;
+}
+form .svgContainer div {
+  position: relative;
+  width: 100%;
+  height: 0;
+  overflow: hidden;
+  padding-bottom: 100%;
+}
+form .svgContainer .mySVG {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}

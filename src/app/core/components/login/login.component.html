@@ -1,0 +1,22 @@
+<section class="content" fxFlex>
+  <form [formGroup]="loginForm" (ngSubmit)="login()">
+    <div class="">
+      <img src="assets\vector\default-monochrome-black.svg">
+    </div>
+
+    <div fxLayout="row" fxLayoutGap="20px">
+      <mat-form-field fxFlex>
+        <input matInput type="email" placeholder="Email" formControlName="email">
+        <mat-error *ngIf="loginForm.controls['email'].hasError('required')">
+          Email is <strong>required</strong>
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field fxFlex>
+        <input matInput type="password" placeholder="Password" formControlName="password">
+        <mat-error *ngIf="loginForm.controls['password'].hasError('required')">
+          Last name is <strong>required</strong>
+        </mat-error>
+      </mat-form-field>
+    </div>
+  </form>
+</section>

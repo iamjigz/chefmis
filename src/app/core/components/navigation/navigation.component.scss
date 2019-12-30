@@ -1,3 +1,8 @@
+.logo {
+  height: 48px;
+  width: 200px;
+}
+
 .sidenav-container {
   height: 100%;
 }
@@ -19,7 +24,7 @@
 }
 
 .mat-sidenav {
-  background:linear-gradient(135deg, #DFEC51 0%,#73AA0A 100%);
+  background:linear-gradient(135deg, #DFEC51 0%,#E3E3E3 100%);
 }
 
 .mat-toolbar.mat-primary {
@@ -30,7 +35,7 @@
   background:linear-gradient(135deg, #17ead9 0%,#6078ea 100%);
 }
 
-main {
-  background:linear-gradient(135deg, #E3E3E3 0%,rgb(169, 178, 187) 100%);
+.mat-sidenav-content {
+  background:linear-gradient(135deg, #E3E3E3 0%, #DFEC51 100%);
 }
 

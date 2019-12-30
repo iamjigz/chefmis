@@ -14,12 +14,14 @@ import { CoreModule } from './core/core.module';
 import { PatientsModule } from './patients/patients.module';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
+import { LoginComponent } from './core/components/login/login.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     NavigationComponent,
-    DashboardComponent
+    DashboardComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
