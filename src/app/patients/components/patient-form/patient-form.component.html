@@ -4,7 +4,7 @@
       <mat-card-title>Patient Form</mat-card-title>
     </mat-card-header>
     <mat-card-content fxLayout="column" fxLayoutGap="20px">
-      <div fxLayout="row" fxLayoutGap="20px">
+      <div fxLayout.gt-sm="row" fxLayout.lt-sm="column" fxLayoutGap="20px">
         <mat-form-field fxFlex>
           <input matInput placeholder="Patient ID" formControlName="id">
           <mat-error *ngIf="patientForm.controls['id'].hasError('required')">
@@ -12,13 +12,14 @@
           </mat-error>
         </mat-form-field>
         <mat-form-field fxFlex>
-          <input matInput formControlName="dateAdmitted" [matDatepicker]="dateAdmitted" placeholder="Date of admission">
+          <input fxFlexFill matInput formControlName="dateAdmitted" [matDatepicker]="dateAdmitted"
+            placeholder="Date of admission">
           <mat-datepicker-toggle matSuffix [for]="dateAdmitted"></mat-datepicker-toggle>
           <mat-datepicker #dateAdmitted></mat-datepicker>
         </mat-form-field>
       </div>
 
-      <div fxLayout="row" fxLayoutGap="20px">
+      <div fxLayout.gt-sm="row" fxLayout.lt-sm="column" fxLayoutGap="20px">
         <mat-form-field fxFlex>
           <input matInput placeholder="First name" formControlName="firstName">
           <mat-error *ngIf="patientForm.controls['firstName'].hasError('required')">
@@ -33,7 +34,7 @@
         </mat-form-field>
       </div>
 
-      <div fxLayout="row" fxLayoutGap="20px">
+      <div fxLayout.gt-sm="row" fxLayout.lt-sm="column" fxLayoutGap="20px">
         <mat-form-field fxFlex>
           <mat-select placeholder="Department" formControlName="department">
             <mat-option *ngFor="let dept of deptList.sort()" [value]="dept">
@@ -52,7 +53,7 @@
         </mat-form-field>
       </div>
 
-      <div fxLayout="row" fxLayoutAlign="start space-around" fxLayoutGap="50px">
+      <div fxLayout.gt-sm="row" fxLayout.lt-sm="column" fxLayoutAlign="start space-around" fxLayoutGap="50px">
         <mat-form-field fxFlex>
           <mat-select placeholder="Diet" formControlName="dietType">
             <mat-option *ngFor="let diet of dietTypes" [value]="diet">
@@ -65,7 +66,7 @@
         </mat-form-field>
       </div>
 
-      <div fxLayout="row" fxLayoutGap="20px">
+      <div fxLayout.gt-sm="row" fxLayout.lt-sm="column" fxLayoutGap="20px">
         <mat-form-field class="full-width">
           <textarea matInput matTextareaAutosize matAutosizeMinRows=3 matAutosizeMaxRows=5 placeholder="Remarks"
             formControlName="remarks"></textarea>

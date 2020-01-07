@@ -7,3 +7,12 @@ table {
   width: 100%;
 }
 
+@media(max-width: 800px) {
+    .responsive {
+        overflow-x: auto !important;
+    }
+
+    .mat-table {
+        min-width:800px;
+    }
+}

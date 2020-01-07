@@ -8,6 +8,7 @@ import { PatientsService } from '../../services/patients.service';
   styleUrls: ['./patients-page.component.scss']
 })
 export class PatientsPageComponent implements OnInit {
+  show = false;
 
   constructor(public patients: PatientsService) { }
 

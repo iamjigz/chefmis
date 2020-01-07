@@ -1,4 +1,4 @@
-<mat-card>
+<mat-card fxHide fxShow.lt-md="false" fxShow.gt-md="true">
   <mat-card-header>
     <mat-card-title>Patient Table</mat-card-title>
     <mat-card-subtitle>
@@ -13,52 +13,52 @@
       <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
     </mat-form-field>
 
-    <div class="mat-elevation-z8">
-      <table mat-table [dataSource]="dataSource" matSort>
+    <div class="mat-elevation-z8 responsive">
+      <mat-table [dataSource]="dataSource" matSort>
 
         <ng-container matColumnDef="dateAdmitted">
-          <th mat-header-cell *matHeaderCellDef mat-sort-header>Date Admitted</th>
-          <td mat-cell *matCellDef="let row">{{row.dateAdmitted['seconds'] * 1000 | date: 'short'}}</td>
+          <mat-header-cell *matHeaderCellDef mat-sort-header>Date Admitted</mat-header-cell>
+          <mat-cell *matCellDef="let row">{{row.dateAdmitted['seconds'] * 1000 | date: 'short'}}</mat-cell>
         </ng-container>
 
         <ng-container matColumnDef="lastName">
-          <th mat-header-cell *matHeaderCellDef mat-sort-header>Last Name</th>
-          <td mat-cell *matCellDef="let row">{{row.lastName}}</td>
+          <mat-header-cell *matHeaderCellDef mat-sort-header>Last Name</mat-header-cell>
+          <mat-cell *matCellDef="let row">{{row.lastName}}</mat-cell>
         </ng-container>
 
         <ng-container matColumnDef="firstName">
-          <th mat-header-cell *matHeaderCellDef mat-sort-header>First Name</th>
-          <td mat-cell *matCellDef="let row">{{row.firstName}}</td>
+          <mat-header-cell *matHeaderCellDef mat-sort-header>First Name</mat-header-cell>
+          <mat-cell *matCellDef="let row">{{row.firstName}}</mat-cell>
         </ng-container>
 
         <ng-container matColumnDef="department">
-          <th mat-header-cell *matHeaderCellDef mat-sort-header>Department</th>
-          <td mat-cell *matCellDef="let row">{{row.department}}</td>
+          <mat-header-cell *matHeaderCellDef mat-sort-header>Department</mat-header-cell>
+          <mat-cell *matCellDef="let row">{{row.department}}</mat-cell>
         </ng-container>
 
         <ng-container matColumnDef="bedNo">
-          <th mat-header-cell *matHeaderCellDef mat-sort-header>Bed Number</th>
-          <td mat-cell *matCellDef="let row">{{row.bedNo}}</td>
+          <mat-header-cell *matHeaderCellDef mat-sort-header>Bed Number</mat-header-cell>
+          <mat-cell *matCellDef="let row">{{row.bedNo}}</mat-cell>
         </ng-container>
 
         <ng-container matColumnDef="dietType">
-          <th mat-header-cell *matHeaderCellDef mat-sort-header>Diet Type</th>
-          <td mat-cell *matCellDef="let row">{{row.dietType}}</td>
+          <mat-header-cell *matHeaderCellDef mat-sort-header>Diet Type</mat-header-cell>
+          <mat-cell *matCellDef="let row">{{row.dietType}}</mat-cell>
         </ng-container>
 
         <ng-container matColumnDef="dateDischarged">
-          <th mat-header-cell *matHeaderCellDef mat-sort-header>Date Discharged</th>
-          <td mat-cell *matCellDef="let row">
+          <mat-header-cell *matHeaderCellDef mat-sort-header>Date Discharged</mat-header-cell>
+          <mat-cell *matCellDef="let row">
             <span *ngIf="row.dateDischarged && row.dateDischarged['seconds']">
               {{ row.dateDischarged['seconds'] * 1000 | date: 'short' }}
             </span>
-          </td>
+          </mat-cell>
         </ng-container>
 
         <!-- Action Column -->
         <ng-container matColumnDef="action">
-          <th mat-header-cell *matHeaderCellDef>Action</th>
-          <td mat-cell *matCellDef="let row">
+          <mat-header-cell *matHeaderCellDef>Action</mat-header-cell>
+          <mat-cell *matCellDef="let row">
             <button mat-icon-button color="primary" (click)="openDialog('Update',row)" matTooltip="Update">
               <mat-icon>edit</mat-icon>
             </button>
@@ -69,13 +69,13 @@
               [disabled]="row.status === 'discharged' ? true : false">
               <mat-icon>accessible_forward</mat-icon>
             </button>
-          </td>
+          </mat-cell>
         </ng-container>
 
-        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-        <tr mat-row *matRowDef="let row; columns: displayedColumns;">
-        </tr>
-      </table>
+        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+        <mat-row *matRowDef="let row; columns: displayedColumns;">
+        </mat-row>
+      </mat-table>
 
       <mat-paginator [pageSizeOptions]="[10, 25, 100]"></mat-paginator>
     </div>

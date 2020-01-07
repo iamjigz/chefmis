@@ -2,12 +2,14 @@
   <mat-sidenav #drawer class="sidenav" fixedInViewport [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
     [mode]="(isHandset$ | async) ? 'over' : 'side'" [opened]="(isHandset$ | async) === false">
     <mat-toolbar color="accent">
-      <img class="logo" src="assets/vector/default-monochrome-white.svg">
+      <img fxHide fxShow.lt-sm="false" fxShow.gt-md="true" class="logo"
+        src="assets/vector/default-monochrome-white.svg">
+      <img fxShow fxHide.lt-sm="false" fxHide.gt-md="true" class="logo"
+        src="assets/vector/isolated-monochrome-white.svg">
     </mat-toolbar>
     <mat-nav-list>
       <a mat-list-item [routerLink]="['/dashboard']" routerLinkActive="active">Dashboard</a>
-      <a mat-list-item [routerLink]="['/patients']" routerLinkActive="active">Patient Information</a>
-      <a mat-list-item [routerLink]="['/patientlist']" routerLinkActive="active">Patient List</a>
+      <a mat-list-item [routerLink]="['/patients']" routerLinkActive="active">Patient List</a>
       <a mat-list-item [routerLink]="['/meals']" routerLinkActive="active">Meal Information</a>
     </mat-nav-list>
   </mat-sidenav>
@@ -18,8 +20,9 @@
         <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
       </button>
 
-      <span>Computerized Hospital Efficient Food Management Information
+      <span fxHide fxShow.lt-sm="false" fxShow.gt-md="true">Computerized Hospital Efficient Food Management Information
         System</span>
+      <span fxShow fxHide.lt-sm="false" fxHide.gt-md="true">CHEF-MIS</span>
       <!-- This fills the remaining space of the current row -->
       <span class="space"></span>
 
