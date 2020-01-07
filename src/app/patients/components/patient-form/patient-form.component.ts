@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { FormBuilder, Validators, FormGroup, FormGroupDirective } from '@angular/forms';
 
-import { Patient } from './../../models/patient';
 import { PatientsService } from '../../services/patients.service';
 
 @Component({
@@ -17,7 +16,7 @@ export class PatientFormComponent {
     dateAdmitted: [new Date(), Validators.required],
     department: [null, Validators.required],
     bedNo: [null, Validators.required],
-    dietType: ['routine', Validators.required],
+    dietType: ['', Validators.required],
     status: ['admitted', Validators.required],
     remarks: ['None', Validators.required],
   });
@@ -25,11 +24,24 @@ export class PatientFormComponent {
   hasUnitNumber = false;
 
   deptList = [
-    'Nutrition',
-    'Dietary',
+    'Pay',
+    'Philhealth',
+    'Pedia',
+    'OB',
     'Surgery',
-    'Cardiology',
-    'Emergency'
+    'Medicine'
+  ];
+
+  dietTypes = [
+    'Routine Diet/Full Diet',
+    'Soft Diet',
+    'Liquid Diet',
+    'Low Salt Low Fat',
+    'Diabetic Diet',
+    'Renal Diet',
+    'Renal-Diabetic Diet',
+    'EHCF Diet (Except High-Colored Food)',
+    'Others'
   ];
 
   constructor(private fb: FormBuilder, public patient: PatientsService) { }

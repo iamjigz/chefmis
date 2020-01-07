@@ -23,19 +23,20 @@
   flex: 1 1 auto;
 }
 
-.mat-sidenav {
-  background:linear-gradient(135deg, #DFEC51 0%,#E3E3E3 100%);
-}
 
 .mat-toolbar.mat-primary {
-  background:linear-gradient(135deg, #6078ea 0%,#17ead9 100%);
+  background:linear-gradient(135deg, #8dcaff 0%,#17ead9 100%);
 }
 
 .mat-toolbar.mat-accent {
-  background:linear-gradient(135deg, #17ead9 0%,#6078ea 100%);
+  background:linear-gradient(135deg, #17ead9 0%,#8dcaff 100%);
+}
+
+.mat-sidenav {
+  background:linear-gradient(135deg, #e2edf7 0%,#E3E3E3 100%);
 }
 
 .mat-sidenav-content {
-  background:linear-gradient(135deg, #E3E3E3 0%, #DFEC51 100%);
+  background:linear-gradient(135deg, #E3E3E3 0%, #e2edf7 100%);
 }
 

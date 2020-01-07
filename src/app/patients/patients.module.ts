@@ -7,12 +7,13 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { ReactiveFormsModule } from '@angular/forms';
 
 import { PatientsPageComponent } from './components/patients-page/patients-page.component';
-import { PatientsListComponent } from './components/patients-list/patients-list.component';
 import { PatientFormComponent } from './components/patient-form/patient-form.component';
+import { PatientsListComponent } from './components/patients-list/patients-list.component';
+import { PatientTableComponent } from './components/patient-table/patient-table.component';
 
 
 @NgModule({
-  declarations: [PatientsPageComponent, PatientsListComponent, PatientFormComponent],
+  declarations: [PatientsPageComponent, PatientFormComponent, PatientsListComponent, PatientTableComponent],
   imports: [
     CommonModule,
     ReactiveFormsModule,

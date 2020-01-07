@@ -1,16 +1,15 @@
 <mat-card>
   <mat-card-header>
     <mat-card-title>Patient List</mat-card-title>
+    <mat-card-subtitle>
+      <span *ngIf="loading$ | async">Loading...</span>
+      <span *ngIf="noResults$ | async">No results</span>
+      <span>{{ (patients$ | async).length }} patients currently admitted.</span>
+    </mat-card-subtitle>
   </mat-card-header>
+
   <mat-card-content>
-    <div *ngIf="loading$ | async">
-      Loading...
-    </div>
-    <div *ngIf="noResults$ | async">
-      No results
-    </div>
     <mat-list>
-      <h3 matSubheader>{{ (patients$ | async).length }} patients currently admitted.</h3>
       <mat-list-item *ngFor="let patient of patients$ | async">
         <mat-icon matListIcon color="accent">face</mat-icon>
         <h4 matLine>

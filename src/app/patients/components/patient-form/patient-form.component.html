@@ -1,7 +1,7 @@
 <form [formGroup]="patientForm" #directive="ngForm" (ngSubmit)="submit(patientForm, directive)">
   <mat-card class="patient-card">
     <mat-card-header>
-      <mat-card-title>Patient Information</mat-card-title>
+      <mat-card-title>Patient Form</mat-card-title>
     </mat-card-header>
     <mat-card-content fxLayout="column" fxLayoutGap="20px">
       <div fxLayout="row" fxLayoutGap="20px">
@@ -53,22 +53,16 @@
       </div>
 
       <div fxLayout="row" fxLayoutAlign="start space-around" fxLayoutGap="50px">
-        <div>
-          <label id="status-label">Status:</label>
-          <mat-radio-group formControlName="status" aria-labelledby="status-label">
-            <mat-radio-button value="admitted">Admitted</mat-radio-button>
-            <mat-radio-button value="pending">Pending Discharge</mat-radio-button>
-            <mat-radio-button value="discharged">Discharged</mat-radio-button>
-          </mat-radio-group>
-        </div>
-        <div>
-          <label id="diet-type-label">Type of Diet:</label>
-          <mat-radio-group formControlName="dietType" aria-labelledby="diet-type-label">
-            <mat-radio-button value="routine">Routine Diet</mat-radio-button>
-            <mat-radio-button value="therapeutic">Therapeutic Diet</mat-radio-button>
-            <mat-radio-button value="personalized">Personalized Diet</mat-radio-button>
-          </mat-radio-group>
-        </div>
+        <mat-form-field fxFlex>
+          <mat-select placeholder="Diet" formControlName="dietType">
+            <mat-option *ngFor="let diet of dietTypes" [value]="diet">
+              {{ diet }}
+            </mat-option>
+          </mat-select>
+          <mat-error *ngIf="patientForm.controls['dietType'].hasError('required')">
+            Diet is <strong>required</strong>
+          </mat-error>
+        </mat-form-field>
       </div>
 
       <div fxLayout="row" fxLayoutGap="20px">
@@ -86,7 +80,7 @@
       <button mat-raised-button color="primary" type="submit" [disabled]="!patientForm.valid">
         Add
       </button>
-      <button mat-raised-button color="accent" type="reset" (click)="resetForm(patientForm, directive)">
+      <button mat-raised-button color="warn" type="reset" (click)="resetForm(patientForm, directive)">
         Cancel
       </button>
     </mat-card-actions>

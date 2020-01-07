@@ -69,6 +69,16 @@ export class PatientsService {
     });
   }
 
+  update(patient: Patient): any {
+    // this.store.patch({ loading: true, patients: [] }, 'patient update');
+    return this.firestore.update(patient.ref, patient).catch(err => {
+      this.store.patch({
+        loading: false,
+        formStatus: 'An error ocurred'
+      }, 'patient update ERROR');
+    });
+  }
+
   delete(id: string): any {
     this.store.patch({ loading: true, patients: [] }, 'patient delete');
     return this.firestore.delete(id).catch(err => {

@@ -14,9 +14,7 @@ export class PatientsListComponent implements OnInit {
   patients$: Observable<Patient[]>;
   noResults$: Observable<boolean>;
 
-  constructor(
-    private patients: PatientsService
-  ) { }
+  constructor(private patients: PatientsService) { }
 
   ngOnInit() {
     this.loading$ = this.patients.loading$;

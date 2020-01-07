@@ -4,6 +4,7 @@ export interface Patient {
   firstName: string;
   lastName: string;
   dateAdmitted: Date;
+  dateDischarged?: any;
   department: string;
   bedNo: number;
   dietType: string;
