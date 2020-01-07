@@ -1,9 +1,78 @@
 <h1 mat-dialog-title>Row Action :: <strong>{{action}}</strong></h1>
 <main mat-dialog-content>
   <div *ngIf="action === 'Update'; else discharge">
-    <mat-form-field>
-      <input placeholder="Name" matInput [value]="localData.firstName">
-    </mat-form-field>
+    <form [formGroup]="patientForm" #directive="ngForm">
+      <div fxLayout="row" fxLayoutGap="20px">
+        <mat-form-field fxFlex>
+          <input matInput placeholder="Patient ID" formControlName="id">
+          <mat-error *ngIf="patientForm.controls['id'].hasError('required')">
+            Patient ID is <strong>required</strong>
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field fxFlex>
+          <input matInput formControlName="dateAdmitted" [matDatepicker]="dateAdmitted" placeholder="Date of admission">
+          <mat-datepicker-toggle matSuffix [for]="dateAdmitted"></mat-datepicker-toggle>
+          <mat-datepicker #dateAdmitted></mat-datepicker>
+        </mat-form-field>
+      </div>
+
+      <div fxLayout="row" fxLayoutGap="20px">
+        <mat-form-field fxFlex>
+          <input matInput placeholder="First name" formControlName="firstName">
+          <mat-error *ngIf="patientForm.controls['firstName'].hasError('required')">
+            First name is <strong>required</strong>
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field fxFlex>
+          <input matInput placeholder="Last name" formControlName="lastName">
+          <mat-error *ngIf="patientForm.controls['lastName'].hasError('required')">
+            Last name is <strong>required</strong>
+          </mat-error>
+        </mat-form-field>
+      </div>
+
+      <div fxLayout="row" fxLayoutGap="20px">
+        <mat-form-field fxFlex>
+          <mat-select placeholder="Department" formControlName="department">
+            <mat-option *ngFor="let dept of deptList.sort()" [value]="dept">
+              {{ dept }}
+            </mat-option>
+          </mat-select>
+          <mat-error *ngIf="patientForm.controls['department'].hasError('required')">
+            Department is <strong>required</strong>
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field fxFlex>
+          <input matInput type="number" placeholder="Bed Number" formControlName="bedNo">
+          <mat-error *ngIf="patientForm.controls['bedNo'].hasError('required')">
+            Bed Number is <strong>required</strong>
+          </mat-error>
+        </mat-form-field>
+      </div>
+
+      <div fxLayout="row" fxLayoutAlign="start space-around" fxLayoutGap="50px">
+        <mat-form-field fxFlex>
+          <mat-select placeholder="Diet" formControlName="dietType">
+            <mat-option *ngFor="let diet of dietTypes" [value]="diet">
+              {{ diet }}
+            </mat-option>
+          </mat-select>
+          <mat-error *ngIf="patientForm.controls['dietType'].hasError('required')">
+            Diet is <strong>required</strong>
+          </mat-error>
+        </mat-form-field>
+      </div>
+
+      <div fxLayout="row" fxLayoutGap="20px">
+        <mat-form-field class="full-width">
+          <textarea matInput matTextareaAutosize matAutosizeMinRows=3 matAutosizeMaxRows=5 placeholder="Remarks"
+            formControlName="remarks"></textarea>
+          <mat-error *ngIf="patientForm.controls['remarks'].hasError('required')">
+            Remarks is <strong>required</strong>
+          </mat-error>
+        </mat-form-field>
+      </div>
+    </form>
   </div>
 
   <ng-template #discharge>
@@ -18,6 +87,7 @@
 </main>
 
 <div mat-dialog-actions>
-  <button mat-button (click)="doAction()" mat-raised-button color="primary">{{ action }}</button>
+  <button mat-button (click)="doAction()" mat-raised-button color="primary"
+    [disabled]="!patientForm.valid">{{ action }}</button>
   <button mat-button (click)="closeDialog()" mat-raised-button color="warn">Cancel</button>
 </div>

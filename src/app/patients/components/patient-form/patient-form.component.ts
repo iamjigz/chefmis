@@ -21,8 +21,6 @@ export class PatientFormComponent {
     remarks: ['None', Validators.required],
   });
 
-  hasUnitNumber = false;
-
   deptList = [
     'Pay',
     'Philhealth',

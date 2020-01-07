@@ -87,7 +87,7 @@ export class PatientTableComponent implements OnInit {
         this.update(result.data);
       } else if (result.event === 'Discharge') {
         this.dischargePatient(result.data);
-      } else {
+      } else if (result.event === 'Delete') {
         this.delete(result.data);
       }
     });
