@@ -10,10 +10,11 @@ import { PatientsPageComponent } from './components/patients-page/patients-page.
 import { PatientFormComponent } from './components/patient-form/patient-form.component';
 import { PatientsListComponent } from './components/patients-list/patients-list.component';
 import { PatientTableComponent } from './components/patient-table/patient-table.component';
+import { DialogBoxComponent } from './components/patient-table/dialog-box/dialog-box.component';
 
 
 @NgModule({
-  declarations: [PatientsPageComponent, PatientFormComponent, PatientsListComponent, PatientTableComponent],
+  declarations: [PatientsPageComponent, PatientFormComponent, PatientsListComponent, PatientTableComponent, DialogBoxComponent],
   imports: [
     CommonModule,
     ReactiveFormsModule,
@@ -21,6 +22,7 @@ import { PatientTableComponent } from './components/patient-table/patient-table.
     FlexLayoutModule,
     PatientsRoutingModule,
   ],
-  exports: [PatientsPageComponent, PatientsListComponent]
+  exports: [PatientsPageComponent, PatientsListComponent],
+  entryComponents: [DialogBoxComponent]
 })
 export class PatientsModule { }

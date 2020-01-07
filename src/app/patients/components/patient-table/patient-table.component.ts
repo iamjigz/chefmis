@@ -4,10 +4,12 @@ import { Observable } from 'rxjs';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
+import { MatDialog } from '@angular/material/dialog';
 import * as firebase from 'firebase';
 
 import { Patient } from '../../models/patient';
 import { PatientsService } from '../../services/patients.service';
+import { DialogBoxComponent } from './dialog-box/dialog-box.component';
 
 @Component({
   selector: 'app-patient-table',
@@ -23,10 +25,10 @@ export class PatientTableComponent implements OnInit {
     'firstName',
     'lastName',
     'department',
-    'bedNo', 'dietType',
-    'status',
+    'bedNo',
+    'dietType',
     'dateDischarged',
-    'isDischarged'
+    'action'
   ];
   dataSource: MatTableDataSource<Patient>;
   expandedRow: Patient | null;
@@ -34,7 +36,7 @@ export class PatientTableComponent implements OnInit {
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
   @ViewChild(MatSort, { static: true }) sort: MatSort;
 
-  constructor(private patients: PatientsService) {
+  constructor(private patients: PatientsService, public dialog: MatDialog) {
   }
 
   ngOnInit() {
@@ -62,9 +64,6 @@ export class PatientTableComponent implements OnInit {
       update.status = 'discharged';
       update.dateDischarged = firebase.firestore.Timestamp.now();
       this.update(update);
-    } else {
-      // patient.status = 'admitted';
-      // patient.dateDischarged = null;
     }
   }
 
@@ -76,4 +75,21 @@ export class PatientTableComponent implements OnInit {
     return this.patients.delete(patient.ref);
   }
 
+  openDialog(action, obj) {
+    obj.action = action;
+    const dialogRef = this.dialog.open(DialogBoxComponent, {
+      width: 'auto',
+      data: obj
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result.event === 'Update') {
+        this.update(result.data);
+      } else if (result.event === 'Discharge') {
+        this.dischargePatient(result.data);
+      } else {
+        this.delete(result.data);
+      }
+    });
+  }
 }

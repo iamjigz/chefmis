@@ -1,0 +1,23 @@
+<h1 mat-dialog-title>Row Action :: <strong>{{action}}</strong></h1>
+<main mat-dialog-content>
+  <div *ngIf="action === 'Update'; else discharge">
+    <mat-form-field>
+      <input placeholder="Name" matInput [value]="localData.firstName">
+    </mat-form-field>
+  </div>
+
+  <ng-template #discharge>
+    <ng-container *ngIf="action === 'Discharge'; else delete">Sure to discharge <b>{{ localData.lastName }},
+        {{ localData.firstName }}</b>?
+    </ng-container>
+  </ng-template>
+
+  <ng-template #delete>
+    Sure to delete <b>{{ localData.lastName }}, {{ localData.firstName }}</b>?
+  </ng-template>
+</main>
+
+<div mat-dialog-actions>
+  <button mat-button (click)="doAction()" mat-raised-button color="primary">{{ action }}</button>
+  <button mat-button (click)="closeDialog()" mat-raised-button color="warn">Cancel</button>
+</div>

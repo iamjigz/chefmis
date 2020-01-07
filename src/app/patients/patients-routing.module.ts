@@ -4,11 +4,12 @@ import { Routes, RouterModule } from '@angular/router';
 import { PatientsPageComponent } from './components/patients-page/patients-page.component';
 import { PatientFormComponent } from './components/patient-form/patient-form.component';
 import { PatientsListComponent } from './components/patients-list/patients-list.component';
+import { PatientTableComponent } from './components/patient-table/patient-table.component';
 
 const routes: Routes = [
   { path: 'patients', component: PatientsPageComponent },
   { path: 'patientform', component: PatientFormComponent },
-  { path: 'patientlist', component: PatientsListComponent }
+  { path: 'patientlist', component: PatientTableComponent }
 ];
 
 @NgModule({
