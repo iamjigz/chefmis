@@ -1,0 +1,24 @@
+@import '~@angular/material/theming';
+
+.mat-card {
+  @include mat-elevation-transition;
+  @include mat-elevation(8, #0470dc, 0.8);
+
+  &:active {
+    @include mat-elevation(8);
+  }
+}
+
+.full-width {
+  width: 100%;
+}
+
+.meal-card {
+  min-width: 120px;
+  margin: 20px auto;
+}
+
+.content {
+  margin-top: 40px;
+}
+

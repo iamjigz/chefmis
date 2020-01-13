@@ -9,6 +9,20 @@ import { tap, map } from 'rxjs/operators';
   providedIn: 'root'
 })
 export class MealsService {
+  public DIETS = [
+    'Routine Diet/Full Diet',
+    'Soft Diet',
+    'Liquid Diet',
+    'Low Salt Low Fat',
+    'Diabetic Diet',
+    'Renal Diet',
+    'Renal-Diabetic Diet',
+    'EHCF Diet (Except High-Colored Food)',
+  ];
+  public DAYS = [
+    'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'
+  ];
+
 
   constructor(
     private firestore: MealFirestore,

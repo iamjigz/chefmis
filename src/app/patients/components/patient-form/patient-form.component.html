@@ -70,10 +70,10 @@
 
     </mat-card-content>
     <mat-card-actions>
-      <button mat-raised-button color="primary" type="submit" [disabled]="!patientForm.valid">
+      <button fxFlex mat-raised-button color="primary" type="submit" [disabled]="!patientForm.valid">
         Add
       </button>
-      <button mat-raised-button color="warn" type="reset" (click)="resetForm(patientForm, directive)">
+      <button fxFlex mat-raised-button color="warn" type="reset" (click)="resetForm(patientForm, directive)">
         Cancel
       </button>
     </mat-card-actions>

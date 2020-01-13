@@ -1,1 +1,78 @@
-<p>meal-form works!</p>
+<form [formGroup]="mealForm" #directive="ngForm">
+  <mat-card class="meal-card">
+    <mat-card-header>
+      <mat-card-title>Meal Form</mat-card-title>
+    </mat-card-header>
+    <mat-card-content fxLayout="column" fxLayoutGap="20px">
+      <div fxLayout.gt-sm="row" fxLayout.lt-sm="column" fxLayoutGap="20px">
+        <mat-form-field>
+          <mat-select placeholder="Set" formControlName="set">
+            <mat-option value="A">A</mat-option>
+            <mat-option value="B">B</mat-option>
+            <mat-option value="C">C</mat-option>
+            <mat-option value="D">D</mat-option>
+          </mat-select>
+          <mat-error *ngIf="mealForm.controls['set'].hasError('required')">
+            Set is <strong>required</strong>
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field>
+          <mat-select placeholder="Day" formControlName="day">
+            <mat-option *ngFor="let day of days" [value]="day">
+              {{ day }}
+            </mat-option>
+          </mat-select>
+          <mat-error *ngIf="mealForm.controls['day'].hasError('required')">
+            Day is <strong>required</strong>
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field fxFlex>
+          <mat-select placeholder="Diet" formControlName="diet">
+            <mat-option *ngFor="let diet of diets" [value]="diet">
+              {{ diet }}
+            </mat-option>
+          </mat-select>
+          <mat-error *ngIf="mealForm.controls['diet'].hasError('required')">
+            Diet is <strong>required</strong>
+          </mat-error>
+        </mat-form-field>
+      </div>
+
+      <mat-tab-group color="primary" mat-stretch-tabs>
+        <mat-tab label="Breakfast">
+          <div class="content" fxLayout="column" fxLayouGap="20px">
+            <div fxLayout="column" fxLayouGap="20px" formArrayName="meals"
+              *ngFor="let meal of mealForm.controls['meals']['controls']; let i = index">
+              <div [formGroupName]="i" fxLayout.gt-sm="row" fxLayout.lt-sm="column" fxLayoutGap="20px">
+                <mat-form-field>
+                  <span matPrefix>{{ i + 1 }}. </span>
+                  <input matInput placeholder="Name" formControlName="name">
+                </mat-form-field>
+                <mat-form-field fxFlex>
+                  <input matInput placeholder="Ingredients" formControlName="ingredients">
+                </mat-form-field>
+              </div>
+            </div>
+
+            <button mat-raised-button color="accent" (click)="addMeal()">
+              Add Meal
+            </button>
+          </div>
+        </mat-tab>
+
+        <mat-tab label="Lunch"> Content 2 </mat-tab>
+
+        <mat-tab label="Supper"> Content 3 </mat-tab>
+      </mat-tab-group>
+    </mat-card-content>
+    <mat-card-actions>
+      <button fxFlex mat-raised-button color="primary" type="submit" (click)="submit(mealForm, directive)"
+        [disabled]="!mealForm.valid">
+        Submit
+      </button>
+      <button fxFlex mat-raised-button color="warn" type="reset" (click)="resetForm(mealForm, directive)">
+        Cancel
+      </button>
+    </mat-card-actions>
+  </mat-card>
+</form>
