@@ -14,13 +14,19 @@ export class PatientsListComponent implements OnInit {
   loading$: Observable<boolean>;
   patients$: Observable<Patient[]>;
   noResults$: Observable<boolean>;
+  show: boolean;
 
   constructor(private patients: PatientsService) { }
 
   ngOnInit() {
+    this.show = false;
     this.loading$ = this.patients.loading$;
     this.noResults$ = this.patients.noResults$;
     this.patients$ = this.patients.patients$;
+  }
+
+  togglePatients(patients: Patient[]) {
+    return this.show ? patients : patients.filter(patient => patient.isAdmitted);
   }
 
   dischargePatient(patient: Patient) {
