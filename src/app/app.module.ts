@@ -12,6 +12,8 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 
 import { CoreModule } from './core/core.module';
 import { PatientsModule } from './patients/patients.module';
+import { MealsModule } from './meals/meals.module';
+
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
 import { LoginComponent } from './core/components/login/login.component';
@@ -31,6 +33,7 @@ import { LoginComponent } from './core/components/login/login.component';
     CoreModule,
     MaterialModule,
     PatientsModule,
+    MealsModule,
     ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production }),
   ],
   providers: [],
