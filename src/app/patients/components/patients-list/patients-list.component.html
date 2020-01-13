@@ -11,20 +11,24 @@
   <mat-card-content>
     <mat-list>
       <mat-list-item *ngFor="let patient of patients$ | async">
-        <mat-icon matListIcon color="accent">face</mat-icon>
+        <mat-icon matListIcon [color]="patient.isAdmitted ? 'accent' : 'warn'">face</mat-icon>
         <h4 matLine>
-          <strong>{{ patient.id }}</strong> ||
-          <small>{{ patient.department }} - {{ patient.bedNo }}</small>
+          <strong>{{ patient.lastName }}, {{ patient.firstName }}</strong> ||
+          <small>{{ patient.ward }} - {{ patient.bedNo }}</small>
         </h4>
-        <p matLine class="mat-subheading-1">{{ patient.lastName }}, {{ patient.firstName }}</p>
-        <small matLine>{{ patient.dateAdmitted['seconds'] * 1000 | date: 'medium' }}</small>
+        <p matLine class="mat-subheading-1">{{ patient.diet }}</p>
+        <span matLine class="mat-caption">{{ patient.dateAdmitted['seconds'] * 1000 | date: 'medium' }}
+          <span *ngIf="!patient.isAdmitted"> - {{ patient.dateDischarged['seconds'] * 1000 | date: 'medium' }}</span>
+        </span>
+        <small matLine><strong>Remarks:</strong> {{ patient.remarks }}</small>
 
-        <mat-action-list>
-          <button mat-button color="accent" (click)="update(patient)">
-            Update
+        <mat-action-list fxLayout="row">
+          <button mat-icon-button color="accent" matTooltip="Discharge" (click)="dischargePatient(patient)"
+            [disabled]="patient.isAdmitted ? false : true">
+            <mat-icon>accessible_forward</mat-icon>
           </button>
-          <button mat-button color="warn" (click)="delete(patient)">
-            Delete
+          <button mat-icon-button color="warn" matTooltip="Delete" (click)="delete(patient)">
+            <mat-icon>delete</mat-icon>
           </button>
         </mat-action-list>
         <mat-divider></mat-divider>

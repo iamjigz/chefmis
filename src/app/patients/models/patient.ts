@@ -1,13 +1,12 @@
 export interface Patient {
   ref?: string;
-  id: string;
   firstName: string;
   lastName: string;
   dateAdmitted: Date;
   dateDischarged?: any;
-  department: string;
+  ward: string;
   bedNo: number;
-  dietType: string;
-  status: string;
+  diet: string;
+  isAdmitted: boolean;
   remarks: string;
 }

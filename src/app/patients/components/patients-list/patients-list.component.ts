@@ -3,6 +3,7 @@ import { Observable } from 'rxjs';
 
 import { Patient } from '../../models/patient';
 import { PatientsService } from '../../services/patients.service';
+import * as firebase from 'firebase';
 
 @Component({
   selector: 'app-patients-list',
@@ -22,11 +23,21 @@ export class PatientsListComponent implements OnInit {
     this.patients$ = this.patients.patients$;
   }
 
+  dischargePatient(patient: Patient) {
+    if (patient.isAdmitted === true) {
+      const update = patient;
+      update.isAdmitted = false;
+      update.dateDischarged = firebase.firestore.Timestamp.now();
+      this.update(update);
+    }
+  }
+
   update(patient: Patient) {
+    return this.patients.update(patient);
   }
 
   delete(patient: Patient) {
-    this.patients.delete(patient.id);
+    this.patients.delete(patient.ref);
   }
 
 }

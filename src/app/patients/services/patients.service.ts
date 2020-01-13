@@ -9,6 +9,26 @@ import { tap, map } from 'rxjs/operators';
   providedIn: 'root'
 })
 export class PatientsService {
+  public WARDS = [
+    { name: 'Pay', code: 'PAY' },
+    { name: 'Philhealth', code: 'PHIL' },
+    { name: 'Pediatrics', code: 'PEDIA' },
+    { name: 'OB', code: 'OB' },
+    { name: 'Surgery', code: 'SURG' },
+    { name: 'Medicine', code: 'MED' },
+  ];
+
+  public DIETS = [
+    'Routine Diet/Full Diet',
+    'Soft Diet',
+    'Liquid Diet',
+    'Low Salt Low Fat',
+    'Diabetic Diet',
+    'Renal Diet',
+    'Renal-Diabetic Diet',
+    'EHCF Diet (Except High-Colored Food)',
+    'Others'
+  ];
 
   constructor(
     private firestore: PatientFirestore,

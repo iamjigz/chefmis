@@ -4,11 +4,12 @@
     <mat-card-subtitle>
       <span *ngIf="loading$ | async">Loading...</span>
       <span *ngIf="noResults$ | async">No results</span>
-      <span>{{ (patients$ | async).length }} patients currently admitted.</span>
+      <span>{{ this.admitted.length }} patients currently admitted.</span>
     </mat-card-subtitle>
   </mat-card-header>
 
   <mat-card-content>
+    <mat-slide-toggle (change)="togglePatients($event)">Show All Patients</mat-slide-toggle>
     <mat-form-field>
       <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
     </mat-form-field>
@@ -31,9 +32,9 @@
           <mat-cell *matCellDef="let row">{{row.firstName}}</mat-cell>
         </ng-container>
 
-        <ng-container matColumnDef="department">
-          <mat-header-cell *matHeaderCellDef mat-sort-header>Department</mat-header-cell>
-          <mat-cell *matCellDef="let row">{{row.department}}</mat-cell>
+        <ng-container matColumnDef="ward">
+          <mat-header-cell *matHeaderCellDef mat-sort-header>Ward</mat-header-cell>
+          <mat-cell *matCellDef="let row">{{row.ward}}</mat-cell>
         </ng-container>
 
         <ng-container matColumnDef="bedNo">
@@ -41,9 +42,9 @@
           <mat-cell *matCellDef="let row">{{row.bedNo}}</mat-cell>
         </ng-container>
 
-        <ng-container matColumnDef="dietType">
-          <mat-header-cell *matHeaderCellDef mat-sort-header>Diet Type</mat-header-cell>
-          <mat-cell *matCellDef="let row">{{row.dietType}}</mat-cell>
+        <ng-container matColumnDef="diet">
+          <mat-header-cell *matHeaderCellDef mat-sort-header>Diet</mat-header-cell>
+          <mat-cell *matCellDef="let row">{{row.diet}}</mat-cell>
         </ng-container>
 
         <ng-container matColumnDef="dateDischarged">
@@ -62,12 +63,12 @@
             <button mat-icon-button color="primary" (click)="openDialog('Update',row)" matTooltip="Update">
               <mat-icon>edit</mat-icon>
             </button>
+            <button mat-icon-button color="accent" (click)="openDialog('Discharge',row)" matTooltip="Discharge"
+              [disabled]="row.isAdmitted ? false : true">
+              <mat-icon>accessible_forward</mat-icon>
+            </button>
             <button mat-icon-button color="warn" (click)="openDialog('Delete',row)" matTooltip="Delete">
               <mat-icon>delete</mat-icon>
-            </button>
-            <button mat-icon-button color="accent" (click)="openDialog('Discharge',row)" matTooltip="Discharge"
-              [disabled]="row.status === 'discharged' ? true : false">
-              <mat-icon>accessible_forward</mat-icon>
             </button>
           </mat-cell>
         </ng-container>

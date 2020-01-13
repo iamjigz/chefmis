@@ -9,40 +9,23 @@ import { PatientsService } from '../../services/patients.service';
   styleUrls: ['./patient-form.component.scss']
 })
 export class PatientFormComponent {
+  wards = [];
+  diets = [];
   patientForm = this.fb.group({
-    id: [null, Validators.required],
     firstName: [null, Validators.required],
     lastName: [null, Validators.required],
     dateAdmitted: [new Date(), Validators.required],
-    department: [null, Validators.required],
+    ward: [null, Validators.required],
     bedNo: [null, Validators.required],
-    dietType: ['', Validators.required],
-    status: ['admitted', Validators.required],
+    diet: ['', Validators.required],
+    isAdmitted: [true, Validators.required],
     remarks: ['None', Validators.required],
   });
 
-  deptList = [
-    'Pay',
-    'Philhealth',
-    'Pedia',
-    'OB',
-    'Surgery',
-    'Medicine'
-  ];
-
-  dietTypes = [
-    'Routine Diet/Full Diet',
-    'Soft Diet',
-    'Liquid Diet',
-    'Low Salt Low Fat',
-    'Diabetic Diet',
-    'Renal Diet',
-    'Renal-Diabetic Diet',
-    'EHCF Diet (Except High-Colored Food)',
-    'Others'
-  ];
-
-  constructor(private fb: FormBuilder, public patient: PatientsService) { }
+  constructor(private fb: FormBuilder, public patient: PatientsService) {
+    this.wards = this.patient.WARDS;
+    this.diets = this.patient.DIETS;
+  }
 
   async submit(formGroup: FormGroup, formDirective: FormGroupDirective) {
     this.patientForm.disable();

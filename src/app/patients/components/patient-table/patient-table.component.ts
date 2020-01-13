@@ -10,6 +10,7 @@ import * as firebase from 'firebase';
 import { Patient } from '../../models/patient';
 import { PatientsService } from '../../services/patients.service';
 import { DialogBoxComponent } from './dialog-box/dialog-box.component';
+import { MatSlideToggleChange } from '@angular/material';
 
 @Component({
   selector: 'app-patient-table',
@@ -24,14 +25,15 @@ export class PatientTableComponent implements OnInit {
     'dateAdmitted',
     'firstName',
     'lastName',
-    'department',
+    'ward',
     'bedNo',
-    'dietType',
+    'diet',
     'dateDischarged',
     'action'
   ];
+  patientList: Patient[];
+  admitted: Patient[];
   dataSource: MatTableDataSource<Patient>;
-  expandedRow: Patient | null;
 
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
   @ViewChild(MatSort, { static: true }) sort: MatSort;
@@ -44,7 +46,9 @@ export class PatientTableComponent implements OnInit {
     this.noResults$ = this.patients.noResults$;
     this.patients$ = this.patients.patients$;
     this.patients$.subscribe((patientData: Patient[]) => {
-      this.dataSource = new MatTableDataSource(patientData);
+      this.patientList = patientData;
+      this.admitted = this.patientList.filter(patient => patient.isAdmitted);
+      this.dataSource = new MatTableDataSource(this.admitted);
       this.dataSource.paginator = this.paginator;
       this.dataSource.sort = this.sort;
     });
@@ -58,10 +62,14 @@ export class PatientTableComponent implements OnInit {
     }
   }
 
+  togglePatients(changeEvent: MatSlideToggleChange) {
+    return this.dataSource.data = changeEvent.checked ? this.patientList : this.admitted;
+  }
+
   dischargePatient(patient: Patient) {
-    if (patient.status === 'admitted') {
+    if (patient.isAdmitted === true) {
       const update = patient;
-      update.status = 'discharged';
+      update.isAdmitted = false;
       update.dateDischarged = firebase.firestore.Timestamp.now();
       this.update(update);
     }
