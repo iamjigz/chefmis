@@ -1,10 +1,10 @@
 @import '~@angular/material/theming';
 @include mat-core();
-$my-app-primary: mat-palette($mat-indigo);
-$my-app-accent: mat-palette($mat-teal);
-$my-app-warn: mat-palette($mat-purple);
-$my-app-theme: mat-light-theme($my-app-primary, $my-app-accent, $my-app-warn);
-@include angular-material-theme($my-app-theme);
+$primary: mat-palette($mat-indigo);
+$accent: mat-palette($mat-teal);
+$warn: mat-palette($mat-purple);
+$theme: mat-light-theme($primary, $accent, $warn);
+@include angular-material-theme($theme);
 .alternate-theme {
   $alternate-primary: mat-palette($mat-light-blue);
   $alternate-accent: mat-palette($mat-yellow, 400);
@@ -14,6 +14,12 @@ $my-app-theme: mat-light-theme($my-app-primary, $my-app-accent, $my-app-warn);
 
 .mat-card {
   background:linear-gradient(135deg, #def7f5 0%, #c0eee9 100%);
+}
+
+.active {
+  background: linear-gradient(135deg, #c9e9e6 0%, #b5e9e3 100%) !important;
+  color: mat-color($accent) !important;
+  font-weight: 700;
 }
 
 

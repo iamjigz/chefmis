@@ -90,7 +90,7 @@ export class PatientsService {
   }
 
   update(patient: Patient): any {
-    // this.store.patch({ loading: true, patients: [] }, 'patient update');
+    this.store.patch({ loading: true, patients: [] }, 'patient update');
     return this.firestore.update(patient.ref, patient).catch(err => {
       this.store.patch({
         loading: false,
