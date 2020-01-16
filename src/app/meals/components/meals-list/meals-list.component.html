@@ -1,0 +1,42 @@
+<mat-card>
+  <mat-card-header>
+    <mat-card-title>Meals</mat-card-title>
+    <mat-card-subtitle>
+      <span *ngIf="loading$ | async">Loading...</span>
+      <span *ngIf="noResults$ | async">No results</span>
+    </mat-card-subtitle>
+  </mat-card-header>
+
+  <mat-card-content>
+    <mat-list>
+      <mat-list-item *ngFor="let meal of meals$ | async" fxLayout="column">
+        <h4 matLine><strong>{{ meal.date }}</strong></h4>
+        <h4 matLine>
+          <strong>{{ meal.diet }}</strong> ||
+          <small>Set {{ meal.set }} - {{ meal.day }}</small>
+        </h4>
+
+        <strong matLine class="mat-title">Breakfast</strong>
+        <div matLine fxLayout="column" fxLayoutGap="20px" *ngFor="let m of meal.meals">
+          <small *ngIf="m.mealTime === 'Breakfast'">
+            <strong>{{ m.name }}</strong> - {{ m.ingredients }}
+          </small>
+        </div>
+
+        <strong matLine class="mat-title">Lunch</strong>
+        <div matLine fxLayout="column" fxLayoutGap="20px" *ngFor="let m of meal.meals">
+          <small *ngIf="m.mealTime === 'Lunch'">
+            <strong>{{ m.name }}</strong> - {{ m.ingredients }}
+          </small>
+        </div>
+
+        <strong matLine class="mat-title">Supper</strong>
+        <div matLine fxLayout="column" fxLayoutGap="20px" *ngFor="let m of meal.meals">
+          <small *ngIf="m.mealTime === 'Supper'">
+            <strong>{{ m.name }}</strong> - {{ m.ingredients }}
+          </small>
+        </div>
+      </mat-list-item>
+    </mat-list>
+  </mat-card-content>
+</mat-card>

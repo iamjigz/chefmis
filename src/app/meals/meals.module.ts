@@ -8,10 +8,11 @@ import { MealsRoutingModule } from './meals-routing.module';
 import { MealsPageComponent } from './components/meals-page/meals-page.component';
 import { MealDetailComponent } from './components/meal-detail/meal-detail.component';
 import { MealFormComponent } from './components/meal-form/meal-form.component';
+import { MealsListComponent } from './components/meals-list/meals-list.component';
 
 
 @NgModule({
-  declarations: [MealsPageComponent, MealDetailComponent, MealFormComponent],
+  declarations: [MealsPageComponent, MealDetailComponent, MealFormComponent, MealsListComponent],
   imports: [
     CommonModule,
     ReactiveFormsModule,
