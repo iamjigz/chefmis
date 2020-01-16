@@ -1,14 +1,15 @@
 export interface Meal {
   ref?: string;
+  date: string;
   diet: string;
   set: string;
   day: string;
-  breakfast: Menu[];
-  lunch: Menu[];
-  supper: Menu[];
+  meals: Menu[];
 }
 
 export interface Menu {
+  id: number | string;
+  mealTime: string;
   name: string;
-  ingredients: string[];
+  ingredients: string | string[];
 }

@@ -1,12 +1,41 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators, FormGroup, FormGroupDirective, FormArray } from '@angular/forms';
+import { MomentDateAdapter, MAT_MOMENT_DATE_ADAPTER_OPTIONS } from '@angular/material-moment-adapter';
+import { DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE } from '@angular/material/core';
+import { MatDatepicker } from '@angular/material/datepicker';
+
+import * as _moment from 'moment';
+import { default as _rollupMoment, Moment } from 'moment';
 
 import { MealsService } from '../../services/meals.service';
+
+const moment = _moment;
+
+export const DATE_FORMAT = {
+  parse: {
+    dateInput: 'MMM YYYY',
+  },
+  display: {
+    dateInput: 'MMM YYYY',
+    monthYearLabel: 'MMM YYYY',
+    dateA11yLabel: 'LL',
+    monthYearA11yLabel: 'MMM YYYY',
+  },
+};
 
 @Component({
   selector: 'app-meal-form',
   templateUrl: './meal-form.component.html',
-  styleUrls: ['./meal-form.component.scss']
+  styleUrls: ['./meal-form.component.scss'],
+  providers: [
+    {
+      provide: DateAdapter,
+      useClass: MomentDateAdapter,
+      deps: [MAT_DATE_LOCALE, MAT_MOMENT_DATE_ADAPTER_OPTIONS]
+    },
+
+    { provide: MAT_DATE_FORMATS, useValue: DATE_FORMAT },
+  ]
 })
 export class MealFormComponent implements OnInit {
   diets = [];
@@ -21,6 +50,7 @@ export class MealFormComponent implements OnInit {
 
   ngOnInit() {
     this.mealForm = this.fb.group({
+      date: [moment(), Validators.required],
       diet: ['', Validators.required],
       set: ['', Validators.required],
       day: ['', Validators.required],
@@ -30,8 +60,22 @@ export class MealFormComponent implements OnInit {
     this.meals = this.mealForm.get('meals') as FormArray;
   }
 
-  createMeal(): FormGroup {
+  yearHandler(normalizedYear: Moment) {
+    const date = this.mealForm.get('date').value;
+    date.year(normalizedYear.year());
+    this.mealForm.get('date').setValue(date);
+  }
+
+  monthHandler(normalizedMonth: Moment, datepicker: MatDatepicker<Moment>) {
+    const date = this.mealForm.get('date').value;
+    date.month(normalizedMonth.month());
+    this.mealForm.get('date').setValue(date);
+    datepicker.close();
+  }
+
+  createMeal(time?: string): FormGroup {
     return this.fb.group({
+      mealTime: [time, Validators.required],
       name: ['', Validators.required],
       ingredients: ['', Validators.required],
     });

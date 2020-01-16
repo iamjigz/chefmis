@@ -5,7 +5,27 @@
     </mat-card-header>
     <mat-card-content fxLayout="column" fxLayoutGap="20px">
       <div fxLayout.gt-sm="row" fxLayout.lt-sm="column" fxLayoutGap="20px">
-        <mat-form-field>
+        <mat-form-field fxFlex>
+          <input matInput formControlName="date" [matDatepicker]="date" placeholder="Date">
+          <mat-datepicker-toggle matSuffix [for]="date"></mat-datepicker-toggle>
+          <mat-datepicker #date startView="year" (yearSelected)="yearHandler($event)"
+            (monthSelected)="monthHandler($event, date)" panelClass="month-picker"></mat-datepicker>
+        </mat-form-field>
+
+        <mat-form-field fxFlex>
+          <mat-select placeholder="Diet" formControlName="diet">
+            <mat-option *ngFor="let diet of diets" [value]="diet">
+              {{ diet }}
+            </mat-option>
+          </mat-select>
+          <mat-error *ngIf="mealForm.controls['diet'].hasError('required')">
+            Diet is <strong>required</strong>
+          </mat-error>
+        </mat-form-field>
+      </div>
+
+      <div fxLayout.gt-sm="row" fxLayout.lt-sm="column" fxLayoutGap="20px">
+        <mat-form-field fxFlex>
           <mat-select placeholder="Set" formControlName="set">
             <mat-option value="A">A</mat-option>
             <mat-option value="B">B</mat-option>
@@ -16,7 +36,7 @@
             Set is <strong>required</strong>
           </mat-error>
         </mat-form-field>
-        <mat-form-field>
+        <mat-form-field fxFlex>
           <mat-select placeholder="Day" formControlName="day">
             <mat-option *ngFor="let day of days" [value]="day">
               {{ day }}
@@ -24,16 +44,6 @@
           </mat-select>
           <mat-error *ngIf="mealForm.controls['day'].hasError('required')">
             Day is <strong>required</strong>
-          </mat-error>
-        </mat-form-field>
-        <mat-form-field fxFlex>
-          <mat-select placeholder="Diet" formControlName="diet">
-            <mat-option *ngFor="let diet of diets" [value]="diet">
-              {{ diet }}
-            </mat-option>
-          </mat-select>
-          <mat-error *ngIf="mealForm.controls['diet'].hasError('required')">
-            Diet is <strong>required</strong>
           </mat-error>
         </mat-form-field>
       </div>
