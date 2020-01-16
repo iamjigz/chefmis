@@ -48,32 +48,34 @@
         </mat-form-field>
       </div>
 
-      <mat-tab-group color="primary" mat-stretch-tabs>
-        <mat-tab label="Breakfast">
-          <div class="content" fxLayout="column" fxLayouGap="20px">
-            <div fxLayout="column" fxLayouGap="20px" formArrayName="meals"
-              *ngFor="let meal of mealForm.controls['meals']['controls']; let i = index">
-              <div [formGroupName]="i" fxLayout.gt-sm="row" fxLayout.lt-sm="column" fxLayoutGap="20px">
-                <mat-form-field>
-                  <span matPrefix>{{ i + 1 }}. </span>
-                  <input matInput placeholder="Name" formControlName="name">
-                </mat-form-field>
-                <mat-form-field fxFlex>
-                  <input matInput placeholder="Ingredients" formControlName="ingredients">
-                </mat-form-field>
-              </div>
-            </div>
-
-            <button mat-raised-button color="accent" (click)="addMeal()">
-              Add Meal
+      <div class="content" fxLayout="column" fxLayouGap="20px">
+        <span class="mat-headline">Meals</span>
+        <div fxLayout="column" fxLayouGap="20px" formArrayName="meals"
+          *ngFor="let meal of mealForm.controls['meals']['controls']; let i = index">
+          <div [formGroupName]="i" fxLayout.gt-sm="row" fxLayout.lt-sm="column" fxLayoutGap="20px">
+            <button mat-icon-button color="warn" (click)="removeMeal(i)">
+              <mat-icon>remove_circle</mat-icon>
             </button>
+            <mat-form-field>
+              <mat-select placeholder="Time" formControlName="mealTime">
+                <mat-option value="Breakfast">Breakfast</mat-option>
+                <mat-option value="Lunch">Lunch</mat-option>
+                <mat-option value="Supper">Supper</mat-option>
+              </mat-select>
+            </mat-form-field>
+            <mat-form-field fxFlex>
+              <input matInput placeholder="Name" formControlName="name">
+            </mat-form-field>
+            <mat-form-field fxFlex>
+              <input matInput placeholder="Ingredients" formControlName="ingredients">
+            </mat-form-field>
           </div>
-        </mat-tab>
+        </div>
 
-        <mat-tab label="Lunch"> Content 2 </mat-tab>
-
-        <mat-tab label="Supper"> Content 3 </mat-tab>
-      </mat-tab-group>
+        <button mat-raised-button color="accent" (click)="addMeal()">
+          Add Meal
+        </button>
+      </div>
     </mat-card-content>
     <mat-card-actions>
       <button fxFlex mat-raised-button color="primary" type="submit" (click)="submit(mealForm, directive)"

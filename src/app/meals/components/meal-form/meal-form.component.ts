@@ -8,6 +8,7 @@ import * as _moment from 'moment';
 import { default as _rollupMoment, Moment } from 'moment';
 
 import { MealsService } from '../../services/meals.service';
+import { MatTabChangeEvent } from '@angular/material';
 
 const moment = _moment;
 
@@ -73,9 +74,10 @@ export class MealFormComponent implements OnInit {
     datepicker.close();
   }
 
-  createMeal(time?: string): FormGroup {
+
+  createMeal(): FormGroup {
     return this.fb.group({
-      mealTime: [time, Validators.required],
+      mealTime: ['', Validators.required],
       name: ['', Validators.required],
       ingredients: ['', Validators.required],
     });
@@ -86,18 +88,20 @@ export class MealFormComponent implements OnInit {
     this.meals.push(this.createMeal());
   }
 
-  getMealFormGroup(index): FormGroup {
-    this.meals = this.mealForm.get('meals') as FormArray;
-    const formGroup = this.meals.controls[index] as FormGroup;
-    return formGroup;
+  removeMeal(index) {
+    return this.meals.removeAt(index);
   }
 
+
   async submit(formGroup: FormGroup, formDirective: FormGroupDirective) {
-    console.log(this.mealForm.value);
-    // this.mealForm.disable();
-    // await this.meal.create({ ...this.mealForm.value });
-    // this.resetForm(formGroup, formDirective);
-    // this.mealForm.enable();
+    const date = this.mealForm.get('date').value;
+    const formattedDate = moment(date).format('MMM YYYY');
+    this.mealForm.get('date').setValue(formattedDate);
+
+    this.mealForm.disable();
+    await this.meal.create({ ...this.mealForm.value });
+    this.resetForm(formGroup, formDirective);
+    this.mealForm.enable();
   }
 
   resetForm(formGroup: FormGroup, formDirective: FormGroupDirective): void {
