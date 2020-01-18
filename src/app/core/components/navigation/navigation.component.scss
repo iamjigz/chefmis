@@ -3,6 +3,12 @@
   width: 200px;
 }
 
+.title {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
 .sidenav-container {
   height: 100%;
 }
