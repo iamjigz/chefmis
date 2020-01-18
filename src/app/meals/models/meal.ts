@@ -12,4 +12,5 @@ export interface Menu {
   mealTime: string;
   name: string;
   ingredients: string | string[];
+  nutrients: string | string[];
 }

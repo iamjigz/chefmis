@@ -1,5 +1,8 @@
 <div class="container" fxLayout="column" fxLayoutGap="10px">
-  <app-meal-form></app-meal-form>
-  <app-meals-list></app-meals-list>
+  <button mat-icon-button color="primary" (click)="show = !show">
+    <mat-icon>{{ !show ? 'add_circle' : 'remove_circle' }}</mat-icon>
+  </button>
+  <app-meal-form *ngIf="show"></app-meal-form>
+  <app-meals-list fxFlex></app-meals-list>
   <app-meal-detail></app-meal-detail>
 </div>

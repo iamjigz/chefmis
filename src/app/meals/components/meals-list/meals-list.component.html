@@ -32,11 +32,16 @@
       </div>
     </form>
 
-    <mat-list fxLayout="column" fxLayoutGap="20px">
+    <section>
       <h3 matSubheader *ngIf="meals.length === 0">No results found</h3>
-      <mat-list-item *ngFor="let meal of meals">
-        <h4 matLine class="mat-display-1"><strong>{{ meal.date }}</strong></h4>
-        <mat-accordion matLine>
+      <mat-accordion>
+        <div *ngFor="let meal of meals; let i = index; let first = first">
+          <h4 class="mat-title" *ngIf="first">
+            <strong>{{ meal.date }}</strong>
+          </h4>
+          <h4 class="mat-title" *ngIf="i > 0 && meals[i].date !== meals[i - 1].date">
+            <strong>{{ meal.date }}</strong>
+          </h4>
           <mat-expansion-panel>
             <mat-expansion-panel-header>
               <mat-panel-title>{{ meal.diet }}</mat-panel-title>
@@ -62,6 +67,7 @@
                         <div fxLayout="column">
                           <strong class="mat-body-strong">{{ m.name }}</strong>
                           <em>{{ m.ingredients }}</em>
+                          <em>{{ m.nutrients }}</em>
                         </div>
                       </div>
                     </div>
@@ -108,8 +114,8 @@
               </mat-grid-list>
             </section>
           </mat-expansion-panel>
-        </mat-accordion>
-      </mat-list-item>
-    </mat-list>
+        </div>
+      </mat-accordion>
+    </section>
   </mat-card-content>
 </mat-card>

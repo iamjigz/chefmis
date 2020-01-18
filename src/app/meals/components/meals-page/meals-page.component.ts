@@ -6,6 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./meals-page.component.scss']
 })
 export class MealsPageComponent implements OnInit {
+  show = false;
 
   constructor() { }
 

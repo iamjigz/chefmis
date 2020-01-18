@@ -2,3 +2,10 @@
   position: absolute;
   left: 5px;
 }
+
+.mat-panel-title {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+

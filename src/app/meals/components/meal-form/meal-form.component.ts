@@ -78,7 +78,7 @@ export class MealFormComponent implements OnInit {
     return this.fb.group({
       mealTime: ['', Validators.required],
       name: ['', Validators.required],
-      ingredients: ['', Validators.required],
+      ingredients: [''],
       nutrients: ['']
     });
   }
