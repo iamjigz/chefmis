@@ -4,7 +4,7 @@
     <mat-card-subtitle>
       <span *ngIf="loading$ | async">Loading...</span>
       <span *ngIf="noResults$ | async">No results</span>
-      <span>{{ (togglePatients(patients$ | async)).length }} patients shown.</span>
+      <span *ngIf="!(noResults$ | async)">{{ (togglePatients(patients$ | async)).length }} patients shown.</span>
     </mat-card-subtitle>
   </mat-card-header>
 
