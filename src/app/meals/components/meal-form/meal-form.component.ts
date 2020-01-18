@@ -79,6 +79,7 @@ export class MealFormComponent implements OnInit {
       mealTime: ['', Validators.required],
       name: ['', Validators.required],
       ingredients: ['', Validators.required],
+      nutrients: ['']
     });
   }
 

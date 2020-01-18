@@ -37,7 +37,6 @@ export class MealsListComponent implements OnInit {
       date: [moment(), Validators.required],
       diet: [''],
     });
-    // this.meals$ = this.meal.query(...this.mealForm.value)
   }
 
   async submit(formGroup: FormGroup, formDirective: FormGroupDirective) {
@@ -45,7 +44,6 @@ export class MealsListComponent implements OnInit {
     const day = moment(date).format('dddd');
     const diet = this.mealForm.get('diet').value;
     const formattedDate = moment(date).format('MMM YYYY');
-    console.log(formattedDate, day, diet)
     await this.meal.query(formattedDate, day, diet).subscribe(data => this.meals = data);
   }
 }

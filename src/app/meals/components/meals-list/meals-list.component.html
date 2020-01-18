@@ -43,26 +43,70 @@
               <mat-panel-description>{{ meal.day }} - Set {{ meal.set }}</mat-panel-description>
             </mat-expansion-panel-header>
 
-            <strong class="mat-title">Breakfast</strong>
-            <div fxLayout="column" fxLayoutGap="20px" *ngFor="let m of meal.meals">
-              <small *ngIf="m.mealTime === 'Breakfast'">
-                <strong>{{ m.name }}</strong> - {{ m.ingredients }}
-              </small>
-            </div>
+            <section class="content">
+              <h3 class="mat-headline">{{ meal.diet }}</h3>
+              <h1 class="mat-subheading-2">{{ meal.day }} - Set {{ meal.set }}</h1>
 
-            <strong class="mat-title">Lunch</strong>
-            <div fxLayout="column" fxLayoutGap="20px" *ngFor="let m of meal.meals">
-              <small *ngIf="m.mealTime === 'Lunch'">
-                <strong>{{ m.name }}</strong> - {{ m.ingredients }}
-              </small>
-            </div>
+              <mat-grid-list cols="3" rowHeight="1:1">
+                <mat-grid-tile>
+                  <mat-grid-tile-header>
+                    <strong class="mat-title">Breakfast</strong>
+                  </mat-grid-tile-header>
 
-            <strong class="mat-title">Supper</strong>
-            <div fxLayout="column" fxLayoutGap="20px" *ngFor="let m of meal.meals">
-              <small *ngIf="m.mealTime === 'Supper'">
-                <strong>{{ m.name }}</strong> - {{ m.ingredients }}
-              </small>
-            </div>
+                  <section fxLayout="column">
+                    <div *ngFor="let m of meal.meals">
+                      <div fxLayout *ngIf="m.mealTime === 'Breakfast'">
+                        <button mat-icon-button color="accent">
+                          <mat-icon>label_important</mat-icon>
+                        </button>
+                        <div fxLayout="column">
+                          <strong class="mat-body-strong">{{ m.name }}</strong>
+                          <em>{{ m.ingredients }}</em>
+                        </div>
+                      </div>
+                    </div>
+                  </section>
+                </mat-grid-tile>
+
+                <mat-grid-tile>
+                  <mat-grid-tile-header>
+                    <strong class="mat-title">Lunch</strong>
+                  </mat-grid-tile-header>
+                  <section fxLayout="column">
+                    <div *ngFor="let m of meal.meals">
+                      <div fxLayout *ngIf="m.mealTime === 'Lunch'">
+                        <button mat-icon-button color="accent">
+                          <mat-icon>label_important</mat-icon>
+                        </button>
+                        <div fxLayout="column">
+                          <strong class="mat-body-strong">{{ m.name }}</strong>
+                          <em>{{ m.ingredients }}</em>
+                        </div>
+                      </div>
+                    </div>
+                  </section>
+                </mat-grid-tile>
+
+                <mat-grid-tile>
+                  <mat-grid-tile-header>
+                    <strong class="mat-title">Supper</strong>
+                  </mat-grid-tile-header>
+                  <section fxLayout="column">
+                    <div *ngFor="let m of meal.meals">
+                      <div fxLayout *ngIf="m.mealTime === 'Supper'">
+                        <button mat-icon-button color="accent">
+                          <mat-icon>label_important</mat-icon>
+                        </button>
+                        <div fxLayout="column">
+                          <strong class="mat-body-strong">{{ m.name }}</strong>
+                          <em>{{ m.ingredients }}</em>
+                        </div>
+                      </div>
+                    </div>
+                  </section>
+                </mat-grid-tile>
+              </mat-grid-list>
+            </section>
           </mat-expansion-panel>
         </mat-accordion>
       </mat-list-item>
