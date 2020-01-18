@@ -12,7 +12,7 @@
     <mat-slide-toggle (change)="show = !show">Show All Patients</mat-slide-toggle>
     <mat-list>
       <mat-list-item *ngFor="let patient of togglePatients(patients$ | async)">
-        <mat-icon matListIcon [color]="patient.isAdmitted ? 'accent' : 'warn'">face</mat-icon>
+        <mat-icon matListIcon [color]="patient.isAdmitted ? 'primary' : 'warn'">face</mat-icon>
         <h4 matLine>
           <strong>{{ patient.lastName }}, {{ patient.firstName }}</strong> ||
           <small>{{ patient.ward }} - {{ patient.bedNo }}</small>

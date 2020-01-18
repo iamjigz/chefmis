@@ -1,9 +1,17 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
+import { FormBuilder, Validators, FormGroup, FormGroupDirective, FormArray } from '@angular/forms';
+import { MomentDateAdapter, MAT_MOMENT_DATE_ADAPTER_OPTIONS } from '@angular/material-moment-adapter';
+import { DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE } from '@angular/material/core';
+import { MatDatepicker } from '@angular/material/datepicker';
 
-import { Meal } from '../../models/meal';
+import * as _moment from 'moment';
+import { default as _rollupMoment, Moment } from 'moment';
+
 import { MealsService } from '../../services/meals.service';
-import * as firebase from 'firebase';
+import { Meal } from '../../models/meal';
+
+const moment = _moment;
 
 @Component({
   selector: 'app-meals-list',
@@ -12,15 +20,32 @@ import * as firebase from 'firebase';
 })
 export class MealsListComponent implements OnInit {
   loading$: Observable<boolean>;
-  meals$: Observable<Meal[]>;
+  meals: Meal[];
   noResults$: Observable<boolean>;
+  mealForm: FormGroup;
+  diets = [];
 
-  constructor(private meals: MealsService) { }
-
-  ngOnInit() {
-    this.loading$ = this.meals.loading$;
-    this.noResults$ = this.meals.noResults$;
-    this.meals$ = this.meals.meals$;
+  constructor(private fb: FormBuilder, public meal: MealsService) {
+    this.diets = this.meal.DIETS;
   }
 
+  ngOnInit() {
+    this.loading$ = this.meal.loading$;
+    this.noResults$ = this.meal.noResults$;
+    this.meal.meals$.subscribe(data => this.meals = data);
+    this.mealForm = this.fb.group({
+      date: [moment(), Validators.required],
+      diet: [''],
+    });
+    // this.meals$ = this.meal.query(...this.mealForm.value)
+  }
+
+  async submit(formGroup: FormGroup, formDirective: FormGroupDirective) {
+    const date = this.mealForm.get('date').value;
+    const day = moment(date).format('dddd');
+    const diet = this.mealForm.get('diet').value;
+    const formattedDate = moment(date).format('MMM YYYY');
+    console.log(formattedDate, day, diet)
+    await this.meal.query(formattedDate, day, diet).subscribe(data => this.meals = data);
+  }
 }

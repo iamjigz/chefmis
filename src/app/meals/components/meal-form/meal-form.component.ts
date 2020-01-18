@@ -8,7 +8,6 @@ import * as _moment from 'moment';
 import { default as _rollupMoment, Moment } from 'moment';
 
 import { MealsService } from '../../services/meals.service';
-import { MatTabChangeEvent } from '@angular/material';
 
 const moment = _moment;
 

@@ -8,34 +8,63 @@
   </mat-card-header>
 
   <mat-card-content>
-    <mat-list>
-      <mat-list-item *ngFor="let meal of meals$ | async" fxLayout="column">
-        <h4 matLine><strong>{{ meal.date }}</strong></h4>
-        <h4 matLine>
-          <strong>{{ meal.diet }}</strong> ||
-          <small>Set {{ meal.set }} - {{ meal.day }}</small>
-        </h4>
+    <form [formGroup]="mealForm" #directive="ngForm">
+      <div fxLayout.gt-sm="row" fxLayout.lt-sm="column" fxLayoutGap="20px">
+        <mat-form-field fxFlex>
+          <input matInput formControlName="date" [matDatepicker]="date" placeholder="Date">
+          <mat-datepicker-toggle matSuffix [for]="date"></mat-datepicker-toggle>
+          <mat-datepicker #date panelClass="month-picker">
+          </mat-datepicker>
+        </mat-form-field>
 
-        <strong matLine class="mat-title">Breakfast</strong>
-        <div matLine fxLayout="column" fxLayoutGap="20px" *ngFor="let m of meal.meals">
-          <small *ngIf="m.mealTime === 'Breakfast'">
-            <strong>{{ m.name }}</strong> - {{ m.ingredients }}
-          </small>
-        </div>
+        <mat-form-field fxFlex>
+          <mat-select placeholder="Diet" formControlName="diet">
+            <mat-option *ngFor="let diet of diets" [value]="diet">
+              {{ diet }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
 
-        <strong matLine class="mat-title">Lunch</strong>
-        <div matLine fxLayout="column" fxLayoutGap="20px" *ngFor="let m of meal.meals">
-          <small *ngIf="m.mealTime === 'Lunch'">
-            <strong>{{ m.name }}</strong> - {{ m.ingredients }}
-          </small>
-        </div>
+        <button mat-raised-button color="primary" type="submit" (click)="submit(mealForm, directive)"
+          [disabled]="!mealForm.valid">
+          Search
+        </button>
+      </div>
+    </form>
 
-        <strong matLine class="mat-title">Supper</strong>
-        <div matLine fxLayout="column" fxLayoutGap="20px" *ngFor="let m of meal.meals">
-          <small *ngIf="m.mealTime === 'Supper'">
-            <strong>{{ m.name }}</strong> - {{ m.ingredients }}
-          </small>
-        </div>
+    <mat-list fxLayout="column" fxLayoutGap="20px">
+      <h3 matSubheader *ngIf="meals.length === 0">No results found</h3>
+      <mat-list-item *ngFor="let meal of meals">
+        <h4 matLine class="mat-display-1"><strong>{{ meal.date }}</strong></h4>
+        <mat-accordion matLine>
+          <mat-expansion-panel>
+            <mat-expansion-panel-header>
+              <mat-panel-title>{{ meal.diet }}</mat-panel-title>
+              <mat-panel-description>{{ meal.day }} - Set {{ meal.set }}</mat-panel-description>
+            </mat-expansion-panel-header>
+
+            <strong class="mat-title">Breakfast</strong>
+            <div fxLayout="column" fxLayoutGap="20px" *ngFor="let m of meal.meals">
+              <small *ngIf="m.mealTime === 'Breakfast'">
+                <strong>{{ m.name }}</strong> - {{ m.ingredients }}
+              </small>
+            </div>
+
+            <strong class="mat-title">Lunch</strong>
+            <div fxLayout="column" fxLayoutGap="20px" *ngFor="let m of meal.meals">
+              <small *ngIf="m.mealTime === 'Lunch'">
+                <strong>{{ m.name }}</strong> - {{ m.ingredients }}
+              </small>
+            </div>
+
+            <strong class="mat-title">Supper</strong>
+            <div fxLayout="column" fxLayoutGap="20px" *ngFor="let m of meal.meals">
+              <small *ngIf="m.mealTime === 'Supper'">
+                <strong>{{ m.name }}</strong> - {{ m.ingredients }}
+              </small>
+            </div>
+          </mat-expansion-panel>
+        </mat-accordion>
       </mat-list-item>
     </mat-list>
   </mat-card-content>

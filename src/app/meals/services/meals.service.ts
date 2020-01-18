@@ -61,6 +61,16 @@ export class MealsService {
     return this.store.state$.pipe(map(state => state.formStatus));
   }
 
+  query(date: string, day: string, diet?: string) {
+    return this.firestore.collection$(ref => {
+      let query: firebase.firestore.CollectionReference | firebase.firestore.Query = ref;
+      if (date) { query = query.where('date', '==', date); }
+      if (day) { query = query.where('day', '==', day); }
+      if (diet) { query = query.where('diet', '==', diet); }
+      return query;
+    });
+  }
+
   create(meal: Meal) {
     this.store.patch({
       loading: true,

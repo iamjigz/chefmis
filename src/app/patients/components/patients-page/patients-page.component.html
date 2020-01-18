@@ -2,6 +2,7 @@
   <button mat-icon-button color="primary" (click)="show = !show">
     <mat-icon>{{ !show ? 'add_circle' : 'remove_circle' }}</mat-icon>
   </button>
+
   <app-patient-form *ngIf="show"></app-patient-form>
   <app-patient-table></app-patient-table>
   <app-patients-list></app-patients-list>
